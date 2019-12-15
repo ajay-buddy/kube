@@ -3,23 +3,23 @@ services:
   - docker
 
 before_install:
-  - docker build -t ajay-buddy/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ajayotsofts/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run ajay-buddy/react-test npm test -- --coverage
+  - docker run ajayotsofts/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ajay-buddy/multi-client ./client
-  - docker build -t ajay-buddy/multi-nginx ./nginx
-  - docker build -t ajay-buddy/multi-server ./server
-  - docker build -t ajay-buddy/multi-worker ./worker
+  - docker build -t ajayotsofts/multi-client ./client
+  - docker build -t ajayotsofts/multi-nginx ./nginx
+  - docker build -t ajayotsofts/multi-server ./server
+  - docker build -t ajayotsofts/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push ajay-buddy/multi-client
-  - docker push ajay-buddy/multi-nginx
-  - docker push ajay-buddy/multi-server
-  - docker push ajay-buddy/multi-worker
+  - docker push ajayotsofts/multi-client
+  - docker push ajayotsofts/multi-nginx
+  - docker push ajayotsofts/multi-server
+  - docker push ajayotsofts/multi-worker
 
 # deploy:
 #   provider: elasticbeanstalk
